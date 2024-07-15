@@ -26,7 +26,7 @@ class _MainScreenState extends State<MainScreen> {
   static const List<String> _titles = <String>[
     'Fortune Telling',
     'Divination Methods',
-    'Good & Bad Days',
+    'Good & Bad days',
     'Settings',
   ];
 
@@ -117,7 +117,7 @@ class _MainScreenState extends State<MainScreen> {
           if (_isDialogOpen)
             Positioned.fill(
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 7, sigmaY: 7),
+                filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
                 child: Container(
                   color: Colors.black.withOpacity(0.7),
                 ),
@@ -178,8 +178,8 @@ class _MainScreenState extends State<MainScreen> {
               showSelectedLabels: false,
               showUnselectedLabels: false,
               type: BottomNavigationBarType.fixed,
-              elevation: 0, // Ensure no elevation is added
-              iconSize: 0, // Disable default icon size
+              elevation: 0,
+              iconSize: 0,
             ),
           ),
         ),

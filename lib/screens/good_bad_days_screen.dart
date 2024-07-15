@@ -369,7 +369,6 @@ class _ColorSelectionDialogState extends State<ColorSelectionDialog> {
       backgroundColor: Colors.transparent,
       child: Container(
         width: 380.w,
-        height: 500.h,
         decoration: const BoxDecoration(
           color: Colors.transparent,
         ),
@@ -377,6 +376,7 @@ class _ColorSelectionDialogState extends State<ColorSelectionDialog> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Gap(170.h),
               Align(
                 alignment: Alignment.topRight,
                 child: IconButton(
@@ -406,7 +406,7 @@ class _ColorSelectionDialogState extends State<ColorSelectionDialog> {
               ),
               Gap(30.h),
               Text(
-                DateFormat('d MMMM').format(widget.selectedDate),
+                ("${DateFormat('d MMMM').format(widget.selectedDate)}:"),
                 style: TextStyle(
                   fontFamily: 'SF Pro Text',
                   fontWeight: FontWeight.w500,

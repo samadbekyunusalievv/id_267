@@ -23,7 +23,12 @@ class PremiumScreen extends StatelessWidget {
           ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white, size: 25.r),
+          icon: Image.asset(
+            'assets/icons/prev_icon.png',
+            width: 25.r,
+            height: 25.r,
+            color: Colors.white,
+          ),
           onPressed: () {
             Navigator.of(context).pop();
           },

@@ -31,9 +31,6 @@ class _DivinationMethodsScreenState extends State<DivinationMethodsScreen> {
           Gap(20.h),
           Image.asset(
             'assets/image1.png',
-            width: 303.w,
-            height: 303.h,
-            fit: BoxFit.cover,
           ),
         ],
       ),
@@ -56,9 +53,6 @@ class _DivinationMethodsScreenState extends State<DivinationMethodsScreen> {
           Gap(20.h),
           Image.asset(
             'assets/image2.png',
-            width: 303.w,
-            height: 303.h,
-            fit: BoxFit.cover,
           ),
         ],
       ),
@@ -81,9 +75,6 @@ class _DivinationMethodsScreenState extends State<DivinationMethodsScreen> {
           Gap(20.h),
           Image.asset(
             'assets/image3.png',
-            width: 303.w,
-            height: 217.h,
-            fit: BoxFit.cover,
           ),
           Gap(20.h),
           Text(
@@ -100,9 +91,6 @@ class _DivinationMethodsScreenState extends State<DivinationMethodsScreen> {
           Gap(20.h),
           Image.asset(
             'assets/image4.png',
-            width: 303.w,
-            height: 202.h,
-            fit: BoxFit.cover,
           ),
         ],
       ),
@@ -143,125 +131,127 @@ class _DivinationMethodsScreenState extends State<DivinationMethodsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: Padding(
-        padding: EdgeInsets.only(bottom: 68.h),
-        child: Column(
-          children: [
-            Expanded(
-              child: PageView(
-                controller: _pageController,
-                children: _pages,
-              ),
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView(
+              controller: _pageController,
+              children: _pages,
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                bottom: 24.h,
-                right: 20.w,
-                left: 20.w,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  if (_currentPage > 0)
-                    ElevatedButton(
-                      onPressed: _onPreviousPage,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        fixedSize: Size(123.w, 44.h),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(18.r),
-                            topRight: Radius.circular(5.r),
-                            bottomLeft: Radius.circular(5.r),
-                            bottomRight: Radius.circular(18.r),
-                          ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              bottom: 24.h + _getBottomNavigationBarHeight(),
+              right: 20.w,
+              left: 20.w,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                if (_currentPage > 0)
+                  ElevatedButton(
+                    onPressed: _onPreviousPage,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      fixedSize: Size(123.w, 44.h),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(18.r),
+                          topRight: Radius.circular(5.r),
+                          bottomLeft: Radius.circular(5.r),
+                          bottomRight: Radius.circular(18.r),
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/icons/prev_icon.png',
-                            width: 15.r,
-                            height: 15.r,
-                          ),
-                          Gap(3.w),
-                          Flexible(
-                            child: Text(
-                              'Previous',
-                              style: TextStyle(
-                                fontFamily: 'Lato',
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14.r,
-                                height: 1,
-                                color: Colors.black,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  else
-                    SizedBox(width: 123.w),
-                  Text(
-                    '${_currentPage + 1}',
-                    style: TextStyle(
-                      fontFamily: 'To Japan',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 24.sp,
-                      color: Colors.white,
-                      height: 1.2,
                     ),
-                  ),
-                  if (_currentPage < _pages.length - 1)
-                    ElevatedButton(
-                      onPressed: _onNextPage,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        fixedSize: Size(123.w, 44.h),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(5.r),
-                            topRight: Radius.circular(18.r),
-                            bottomLeft: Radius.circular(18.r),
-                            bottomRight: Radius.circular(5.r),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/icons/prev_icon.png',
+                          width: 15.r,
+                          height: 15.r,
+                        ),
+                        Gap(3.w),
+                        Flexible(
+                          child: Text(
+                            'Previous',
+                            style: TextStyle(
+                              fontFamily: 'Lato',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14.r,
+                              height: 1,
+                              color: Colors.black,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
+                      ],
+                    ),
+                  )
+                else
+                  SizedBox(width: 123.w),
+                Text(
+                  '${_currentPage + 1}',
+                  style: TextStyle(
+                    fontFamily: 'To Japan',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 24.sp,
+                    color: Colors.white,
+                    height: 1.2,
+                  ),
+                ),
+                if (_currentPage < _pages.length - 1)
+                  ElevatedButton(
+                    onPressed: _onNextPage,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      fixedSize: Size(123.w, 44.h),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5.r),
+                          topRight: Radius.circular(18.r),
+                          bottomLeft: Radius.circular(18.r),
+                          bottomRight: Radius.circular(5.r),
+                        ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              'Next',
-                              style: TextStyle(
-                                fontFamily: 'Lato',
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14.r,
-                                color: Colors.black,
-                              ),
-                              overflow: TextOverflow.ellipsis,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            'Next',
+                            style: TextStyle(
+                              fontFamily: 'Lato',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14.r,
+                              color: Colors.black,
                             ),
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          Gap(8.w),
-                          Image.asset(
-                            'assets/icons/next_icon.png',
-                            width: 15.r,
-                            height: 15.r,
-                          ),
-                        ],
-                      ),
-                    )
-                  else
-                    SizedBox(width: 123.w),
-                ],
-              ),
+                        ),
+                        Gap(8.w),
+                        Image.asset(
+                          'assets/icons/next_icon.png',
+                          width: 15.r,
+                          height: 15.r,
+                        ),
+                      ],
+                    ),
+                  )
+                else
+                  SizedBox(width: 123.w),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
+  }
+
+  double _getBottomNavigationBarHeight() {
+    final double bottomPadding = MediaQuery.of(context).padding.bottom;
+    return bottomPadding;
   }
 }
 
