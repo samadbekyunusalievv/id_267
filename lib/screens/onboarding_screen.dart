@@ -20,88 +20,91 @@ class OnboardingScreen extends StatelessWidget {
               ),
             ),
           ),
-          Center(
-            child: Column(
-              children: [
-                Gap(225.h),
-                Image.asset(
-                  'assets/logo.png',
-                  width: 161.r,
-                  height: 161.r,
-                ),
-                Gap(30.h),
-                Text(
-                  'Face to Fate',
-                  style: TextStyle(
-                    fontFamily: 'To Japan',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 32.r,
-                    height: 1.2,
-                    color: Colors.white,
+          SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
+            child: Center(
+              child: Column(
+                children: [
+                  Gap(225.h),
+                  Image.asset(
+                    'assets/logo.png',
+                    width: 161.r,
+                    height: 161.r,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                Gap(196.h),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    fixedSize: Size(335.w, 48.h),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.r),
-                        topRight: Radius.circular(5.r),
-                        bottomLeft: Radius.circular(5.r),
-                        bottomRight: Radius.circular(20.r),
-                      ),
-                    ),
-                  ),
-                  onPressed: () {
-                    _showNotificationDialog(context);
-                  },
-                  child: Text(
-                    'Continue',
+                  Gap(30.h),
+                  Text(
+                    'Face to Fate',
                     style: TextStyle(
-                      fontFamily: 'SF Pro Display',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16.sp,
-                      color: Colors.black,
+                      fontFamily: 'To Japan',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 32.r,
+                      height: 1.2,
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Gap(196.h),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      fixedSize: Size(335.w, 48.h),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20.r),
+                          topRight: Radius.circular(5.r),
+                          bottomLeft: Radius.circular(5.r),
+                          bottomRight: Radius.circular(20.r),
+                        ),
+                      ),
+                    ),
+                    onPressed: () {
+                      _showNotificationDialog(context);
+                    },
+                    child: Text(
+                      'Continue',
+                      style: TextStyle(
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16.sp,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
-                ),
-                Gap(25.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Terms of Use',
-                        style: TextStyle(
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14.r,
-                          letterSpacing: -0.4,
-                          color: Colors.white,
+                  Gap(25.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Terms of Use',
+                          style: TextStyle(
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14.r,
+                            letterSpacing: -0.4,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                    Gap(60.w),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Privacy Policy',
-                        style: TextStyle(
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14.r,
-                          letterSpacing: -0.4,
-                          color: Colors.white,
+                      Gap(60.w),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Privacy Policy',
+                          style: TextStyle(
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14.r,
+                            letterSpacing: -0.4,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],

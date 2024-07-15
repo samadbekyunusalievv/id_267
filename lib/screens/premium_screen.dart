@@ -34,7 +34,7 @@ class PremiumScreen extends StatelessWidget {
           },
         ),
         title: Text(
-          'Premium Screen',
+          'Premium',
           style: TextStyle(
             fontFamily: 'SF Pro Display',
             fontWeight: FontWeight.w500,

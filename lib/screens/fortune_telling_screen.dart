@@ -1,11 +1,7 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:sensors_plus/sensors_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shake_event/shake_event.dart';
 
 import '../static/fortune_data.dart';
 
@@ -18,85 +14,39 @@ class FortuneTellingScreen extends StatefulWidget {
   _FortuneTellingScreenState createState() => _FortuneTellingScreenState();
 }
 
-class _FortuneTellingScreenState extends State<FortuneTellingScreen> {
-  final double _shakeThreshold = 2.7;
-  double _lastShakeTimestamp = 0;
-  final double _shakeTimeout = 1000;
-  Timer? _timer;
-  bool _isDialogOpen = false;
-
+class _FortuneTellingScreenState extends State<FortuneTellingScreen>
+    with ShakeHandler {
   String? _dailyFortune;
-  DateTime? _lastCheckedDate;
+  bool _isDialogOpen = false;
 
   @override
   void initState() {
     super.initState();
-    accelerometerEvents.listen(_onAccelerometerEvent);
-    _checkDailyFortune();
-    _startDailyCheckTimer();
+    startListeningShake(20);
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
+    resetShakeListeners();
     super.dispose();
   }
 
-  void _startDailyCheckTimer() {
-    _lastCheckedDate = DateTime.now();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      DateTime now = DateTime.now();
-      if (_lastCheckedDate?.day != now.day) {
-        _lastCheckedDate = now;
-        _checkDailyFortune();
-      }
-    });
-  }
-
-  void _onAccelerometerEvent(AccelerometerEvent event) {
-    double gX = event.x / 9.8;
-    double gY = event.y / 9.8;
-    double gZ = event.z / 9.8;
-    double gForce = sqrt(gX * gX + gY * gY + gZ * gZ);
-
-    if (gForce > _shakeThreshold) {
-      double currentTime = DateTime.now().millisecondsSinceEpoch.toDouble();
-      if (currentTime - _lastShakeTimestamp > _shakeTimeout && !_isDialogOpen) {
-        _lastShakeTimestamp = currentTime;
-        _showFortuneDialog();
-      }
+  @override
+  shakeEventListener() {
+    if (!_isDialogOpen) {
+      _showFortuneDialog();
     }
-  }
-
-  Future<void> _checkDailyFortune() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? storedFortune = prefs.getString('dailyFortune');
-    String? lastFortuneDateString = prefs.getString('lastFortuneDate');
-    DateTime today = DateTime.now();
-
-    if (lastFortuneDateString != null) {
-      DateTime lastFortuneDate = DateTime.parse(lastFortuneDateString);
-      if (lastFortuneDate.day == today.day) {
-        setState(() {
-          _dailyFortune = storedFortune;
-        });
-        return;
-      }
-    }
-
-    String newFortune = getRandomFortune();
-    await prefs.setString('dailyFortune', newFortune);
-    await prefs.setString('lastFortuneDate', today.toIso8601String());
-
-    setState(() {
-      _dailyFortune = newFortune;
-    });
+    return super.shakeEventListener();
   }
 
   void _showFortuneDialog() {
     _isDialogOpen = true;
     widget.onDialogOpen(true);
+    setState(() {
+      _dailyFortune = getRandomFortune();
+    });
     showDialog(
+      barrierDismissible: false,
       context: context,
       barrierColor: Colors.transparent,
       builder: (BuildContext context) {

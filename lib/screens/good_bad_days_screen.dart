@@ -59,6 +59,7 @@ class _GoodBadDaysScreenState extends State<GoodBadDaysScreen> {
     showDialog(
       context: context,
       barrierColor: Colors.transparent,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return Stack(
           children: [
@@ -419,26 +420,34 @@ class _ColorSelectionDialogState extends State<ColorSelectionDialog> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildColorOption(
-                    const Color.fromRGBO(198, 0, 0, 1),
-                    'Bad day',
-                    const Color.fromRGBO(198, 0, 0, 1),
-                    const Color.fromRGBO(198, 0, 0, 0.4),
-                    const Color.fromRGBO(198, 0, 0, 1),
+                  Flexible(
+                    child: _buildColorOption(
+                      const Color.fromRGBO(198, 0, 0, 1),
+                      'Bad day',
+                      const Color.fromRGBO(198, 0, 0, 1),
+                      const Color.fromRGBO(198, 0, 0, 0.4),
+                      const Color.fromRGBO(198, 0, 0, 1),
+                    ),
                   ),
-                  _buildColorOption(
-                    const Color.fromRGBO(0, 179, 61, 1),
-                    'Good day',
-                    const Color.fromRGBO(0, 179, 61, 1),
-                    const Color.fromRGBO(0, 179, 61, 0.4),
-                    const Color.fromRGBO(0, 179, 61, 1),
+                  Gap(10.w),
+                  Flexible(
+                    child: _buildColorOption(
+                      const Color.fromRGBO(0, 179, 61, 1),
+                      'Good day',
+                      const Color.fromRGBO(0, 179, 61, 1),
+                      const Color.fromRGBO(0, 179, 61, 0.4),
+                      const Color.fromRGBO(0, 179, 61, 1),
+                    ),
                   ),
-                  _buildColorOption(
-                    const Color.fromRGBO(191, 191, 191, 1),
-                    'Neutral day',
-                    const Color.fromRGBO(191, 191, 191, 1),
-                    const Color.fromRGBO(191, 191, 191, 0.4),
-                    const Color.fromRGBO(191, 191, 191, 1),
+                  Gap(10.w),
+                  Flexible(
+                    child: _buildColorOption(
+                      const Color.fromRGBO(191, 191, 191, 1),
+                      'Neutral day',
+                      const Color.fromRGBO(191, 191, 191, 1),
+                      const Color.fromRGBO(191, 191, 191, 0.4),
+                      const Color.fromRGBO(191, 191, 191, 1),
+                    ),
                   ),
                 ],
               ),
@@ -490,7 +499,6 @@ class _ColorSelectionDialogState extends State<ColorSelectionDialog> {
         });
       },
       child: Container(
-        width: 90.r,
         height: 48.h,
         decoration: BoxDecoration(
           color: isSelected ? selectedColor : unselectedColor,
